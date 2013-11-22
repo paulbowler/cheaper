@@ -2,15 +2,15 @@
    (:require [net.cgrand.enlive-html :as html]
              [clojure.string :as str]))
 
-(def ^:dynamic *base-url* "http://www.amazon.co.uk/Doctor-Character-Building-Construction-Playset/dp/B004W1T8YW/")
+(def ^:dynamic *base-url* "http://www.amazon.co.uk/gp/product/B00AQVMZ1U/")
 
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
 (defn price []
-  (map html/text (html/select (fetch-url *base-url*) [:b.priceLarge html/text])))
+  (first (map html/text (html/select (fetch-url *base-url*) [:b.priceLarge html/text]))))
 
-(price)
+(re-find (re-pattern "[0-9]+.[0-9]{2}") (price))
 
 (resolve (symbol "cheaper.core/price"))
 
@@ -19,7 +19,7 @@
 
 (-> "^(?:http|https|ftp)://(?:www.)([a-zA-Z0-9.-]+)"
     re-pattern
-    (re-find *base-url*)
+   (re-find *base-url*)
     second
    (str/replace #"\." "-")
     keyword
