@@ -10,7 +10,7 @@
   (product-title [this]
                  (str/trim
                    (first
-                      (html/select (fetch-url (.url this)) [:h1.parseasinTitle :span :span html/text]))))
+                    (html/select (fetch-url (.url this)) [:h1.parseasinTitle :span :span html/text]))))
   (product-price [this]
                  (read-string
                    (re-find

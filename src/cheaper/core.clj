@@ -23,7 +23,7 @@
 (defn scrape [url]
   ((resolve (symbol (str "cheaper.retailers." (domain-name url) "/->parser"))) url))
 
-(def url "http://www.amazon.co.uk/Character-Options-3408-Doctor-Playset/dp/B003Z9LKB6/ref=pd_sim_k_h_b_cs_9")
+(def url "http://www.amazon.co.uk/Black-Leather-Wallet-Smart-compatibility/dp/B00A36UJ8Y/ref=pd_ys_sf_s_340831031_b1_1_p?ie=UTF8&refRID=0DQ5HRYCZ3E5FNTQG4XF")
 
 (.product-title (scrape url))
 (.product-price (scrape url))
