@@ -2,7 +2,7 @@
    (:require [net.cgrand.enlive-html :as html]
              [clojure.string :as str]))
 
-(def ^:dynamic *base-url* "http://www.amazon.co.uk/gp/product/B00AQVMZ1U/")
+(def ^:dynamic *base-url* "http://www.amazon.co.uk/gp/product/B00EORACPI/")
 
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
@@ -24,3 +24,10 @@
    (str/replace #"\." "-")
     keyword
  )
+
+(defprotocol URLScraper
+  "A protocol parsing product information from a web page."
+  (product-title [this] "Parses the product title from the web page.")
+  (product-price [this] "Parses the product price from the web page.")
+  (product-token [this] "Parses the product token or unique ID from the web page.")
+  (product-url   [this] "Creates an affiliate URL for accessing the product page in the future."))
