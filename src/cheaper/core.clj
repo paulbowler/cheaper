@@ -20,6 +20,7 @@
   (product-token [url] "Parses the product token or unique ID from the web page.")
   (product-url   [url] "Creates an affiliate URL for accessing the product page in the future."))
 
-(def f (resolve (symbol "cheaper.retailers.amazon-co-uk/->parser")))
+(defn scrape [url]
+  ((resolve (symbol (str "cheaper.retailers." (domain-name url) "/->parser"))) url))
 
-(.product-price (f "http://www.amazon.co.uk/gp/product/B00C4R3NYM/"))
+(.product-price (scrape "http://www.amazon.co.uk/product/dp/B003Z9LKB6/"))

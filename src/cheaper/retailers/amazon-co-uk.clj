@@ -16,7 +16,3 @@
                                [:b.priceLarge html/text]))))))
   (product-token [this] "token")
   (product-url   [this] (.url this)))
-
-(def amazon-product (->parser "http://www.amazon.co.uk/gp/product/B00C4R3NYM/"))
-
-(.product-price amazon-product)
