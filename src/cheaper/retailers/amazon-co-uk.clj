@@ -1,4 +1,4 @@
-(ns cheaper.amazon-co-uk.core
+(ns cheaper.retailers.amazon-co-uk
    (:require [net.cgrand.enlive-html :as html]
              [clojure.string :as str])
   (:use cheaper.core))

@@ -19,3 +19,7 @@
   (product-price [url] "Parses the product price from the web page.")
   (product-token [url] "Parses the product token or unique ID from the web page.")
   (product-url   [url] "Creates an affiliate URL for accessing the product page in the future."))
+
+(def f (resolve (symbol "cheaper.retailers.amazon-co-uk/->parser")))
+
+(.product-price (f "http://www.amazon.co.uk/gp/product/B00C4R3NYM/"))
