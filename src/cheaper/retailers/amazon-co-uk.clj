@@ -8,9 +8,7 @@
 (deftype parser [url]
   URLScraper
   (product-title [this]
-                 (str/trim
-                   (first
-                    (html/select (fetch-url (.url this)) [:h1.parseasinTitle :span :span html/text]))))
+                 (first (str/split (:content (:attrs (first (html/select (fetch-url (.url this)) [(html/attr= :name "description")])))) #": Amazon.")))
   (product-price [this]
                  (read-string
                    (re-find
